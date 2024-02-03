@@ -46,4 +46,10 @@ public class Category {
     public List<Product> getProducts() {
         return products;
     }
+
+    public void update(CategoryDto data) {
+        this.title = data.title();
+        this.description = data.description();
+        this.owner = data.owner();
+    }
 }

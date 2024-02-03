@@ -28,4 +28,10 @@ public class CategoryService {
     public Category findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found"));
     }
+
+    public Category update(CategoryDto data, Long id) {
+        Category category = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found"));
+        category.update(data);
+        return repository.save(category);
+    }
 }

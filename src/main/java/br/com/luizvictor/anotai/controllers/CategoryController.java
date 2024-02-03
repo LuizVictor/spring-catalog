@@ -39,4 +39,16 @@ public class CategoryController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> update(@RequestBody CategoryDto data, @PathVariable Long id) {
+        try {
+            Category category = service.update(data, id);
+            return ResponseEntity.ok(category);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }
