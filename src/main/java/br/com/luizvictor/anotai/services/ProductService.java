@@ -44,4 +44,11 @@ public class ProductService {
                 () -> new EntityNotFoundException("Product not found")
         );
     }
+
+    public Product update(ProductDto data, Long id) {
+        Product product = findById(id);
+
+        product.update(data);
+        return productRepository.save(product);
+    }
 }

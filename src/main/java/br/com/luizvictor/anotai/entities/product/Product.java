@@ -53,4 +53,10 @@ public class Product {
     public String getDescription() {
         return description;
     }
+
+    public void update(ProductDto data) {
+        this.title = data.title();
+        this.price = BigDecimal.valueOf(data.price());
+        this.description = data.description();
+    }
 }
