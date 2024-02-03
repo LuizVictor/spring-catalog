@@ -1,6 +1,7 @@
 package br.com.luizvictor.anotai.entities.category;
 
 import br.com.luizvictor.anotai.entities.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class Category {
     private String description;
     private Long owner;
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Product> products;
 
     public Category(CategoryDto data) {
