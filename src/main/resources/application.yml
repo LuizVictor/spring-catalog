@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: anota-ai
+
+  datasource:
+    url: jdbc:h2:mem:anotaai
+    username: user
+    password: secret
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
