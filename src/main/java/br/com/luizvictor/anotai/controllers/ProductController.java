@@ -4,12 +4,10 @@ import br.com.luizvictor.anotai.entities.product.Product;
 import br.com.luizvictor.anotai.entities.product.ProductDto;
 import br.com.luizvictor.anotai.services.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -29,4 +27,20 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping
+    public ResponseEntity<List<Product>> list() {
+        List<Product> products = service.list();
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> findById(@PathVariable Long id) {
+        try {
+            Product product = service.findById(id);
+            return ResponseEntity.ok(product);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+     }
 }

@@ -4,9 +4,11 @@ import br.com.luizvictor.anotai.entities.category.Category;
 import br.com.luizvictor.anotai.entities.product.Product;
 import br.com.luizvictor.anotai.entities.product.ProductDto;
 import br.com.luizvictor.anotai.repositories.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -31,5 +33,15 @@ public class ProductService {
         );
 
         return productRepository.save(product);
+    }
+
+    public List<Product> list() {
+        return productRepository.findAll();
+    }
+
+    public Product findById(Long id) {
+        return productRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Product not found")
+        );
     }
 }
