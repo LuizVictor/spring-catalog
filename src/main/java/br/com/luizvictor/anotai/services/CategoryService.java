@@ -34,4 +34,9 @@ public class CategoryService {
         category.update(data);
         return repository.save(category);
     }
+
+    public void delete(Long id) {
+        Category category = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found"));
+        repository.delete(category);
+    }
 }
