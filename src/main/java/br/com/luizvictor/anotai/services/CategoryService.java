@@ -39,4 +39,10 @@ public class CategoryService {
         Category category = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found"));
         repository.delete(category);
     }
+
+    public List<Category> findByOwnerId(Long ownerId) {
+        List<Category> categories =  repository.findByOwner(ownerId);
+        System.out.println(categories);
+        return categories;
+    }
 }

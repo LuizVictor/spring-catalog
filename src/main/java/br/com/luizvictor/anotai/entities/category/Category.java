@@ -3,6 +3,8 @@ package br.com.luizvictor.anotai.entities.category;
 import br.com.luizvictor.anotai.entities.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -53,5 +55,24 @@ public class Category {
         this.title = data.title();
         this.description = data.description();
         this.owner = data.owner();
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+
+        json.put("title", this.title);
+        json.put("description", this.description);
+
+        JSONArray array = new JSONArray();
+        for (Product product : getProducts()) {
+            JSONObject jsonProduct = new JSONObject();
+            jsonProduct.put("title", product.getTitle());
+            jsonProduct.put("description", product.getDescription());
+            jsonProduct.put("price", product.getPrice());
+            array.put(jsonProduct);
+        }
+        json.put("itens", array);
+
+        return json;
     }
 }
