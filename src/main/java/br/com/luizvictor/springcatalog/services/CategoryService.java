@@ -1,8 +1,8 @@
-package br.com.luizvictor.anotai.services;
+package br.com.luizvictor.springcatalog.services;
 
-import br.com.luizvictor.anotai.entities.category.Category;
-import br.com.luizvictor.anotai.entities.category.CategoryDto;
-import br.com.luizvictor.anotai.repositories.CategoryRepository;
+import br.com.luizvictor.springcatalog.entities.category.Category;
+import br.com.luizvictor.springcatalog.entities.category.CategoryDto;
+import br.com.luizvictor.springcatalog.repositories.CategoryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +42,10 @@ public class CategoryService {
 
     public List<Category> findByOwnerId(Long ownerId) {
         List<Category> categories =  repository.findByOwner(ownerId);
-        System.out.println(categories);
+        if (categories.isEmpty()) {
+            throw new EntityNotFoundException("Category not found");
+        }
+
         return categories;
     }
 }

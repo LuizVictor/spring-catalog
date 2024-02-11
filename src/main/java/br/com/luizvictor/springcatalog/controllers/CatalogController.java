@@ -1,6 +1,7 @@
-package br.com.luizvictor.anotai.controllers;
+package br.com.luizvictor.springcatalog.controllers;
 
-import br.com.luizvictor.anotai.services.CatalogService;
+import br.com.luizvictor.springcatalog.services.CatalogService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,11 @@ public class CatalogController {
 
     @PostMapping("/{id}")
     public ResponseEntity<String> crate(@PathVariable Long id) {
-        String category = service.create(id);
-        return ResponseEntity.created(URI.create("/api/catalog/" + id)).body(category);
+        try {
+            String category = service.create(id);
+            return ResponseEntity.created(URI.create("/api/catalog/" + id)).body(category);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

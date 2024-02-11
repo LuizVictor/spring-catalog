@@ -1,6 +1,6 @@
-package br.com.luizvictor.anotai.repositories;
+package br.com.luizvictor.springcatalog.repositories;
 
-import br.com.luizvictor.anotai.entities.category.Category;
+import br.com.luizvictor.springcatalog.entities.category.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

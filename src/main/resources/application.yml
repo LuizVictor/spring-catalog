@@ -1,9 +1,9 @@
 spring:
   application:
-    name: anota-ai
+    name: spring-catalog
 
   datasource:
-    url: jdbc:h2:mem:anotaai
+    url: jdbc:h2:mem:spring-catalog
     username: user
     password: secret
     driver-class-name: org.h2.Driver

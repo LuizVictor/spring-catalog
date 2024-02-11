@@ -1,6 +1,6 @@
-package br.com.luizvictor.anotai.services;
+package br.com.luizvictor.springcatalog.services;
 
-import br.com.luizvictor.anotai.entities.category.Category;
+import br.com.luizvictor.springcatalog.entities.category.Category;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -31,13 +31,12 @@ public class CatalogService {
         JSONObject json = createCatalogJson(ownerId, categories);
 
         rabbitTemplate.convertAndSend("", "q.catalog-generation", json.toString());
-        logger.info("The catalog for the owner {} is being created", ownerId);
+        logger.info("The catalog for the owner {} is being generated", ownerId);
         return "Catalog is being generated";
     }
 
-    @RabbitListener(queues = "q.catalog-generation")
+    @RabbitListener(queues = "q.catalog-generation", containerFactory = "containerFactory")
     public void saveCatalogFile(JSONObject json) {
-        logger.info("Catalog event received: {}", json);
         Integer ownerId = (Integer) json.get("owner");
 
         try {
@@ -46,8 +45,15 @@ public class CatalogService {
             logger.info("Catalog saved on: {}", path);
         } catch (IOException e) {
             logger.error("Error generating catalog: {}", e.getMessage());
+            throw new RuntimeException("Error generating catalog", e);
         }
     }
+
+    @RabbitListener(queues = "q.fall-back-generator")
+    public void catalogFailure(JSONObject json) {
+        logger.info("Fallback for failure {}", json);
+    }
+
 
     private JSONObject createCatalogJson(Long ownerId, List<Category> categories) {
         JSONObject json = new JSONObject();

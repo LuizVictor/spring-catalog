@@ -1,4 +1,4 @@
-package br.com.luizvictor.anotai;
+package br.com.luizvictor.springcatalog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

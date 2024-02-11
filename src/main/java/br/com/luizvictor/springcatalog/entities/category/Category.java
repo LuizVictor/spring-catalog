@@ -1,6 +1,6 @@
-package br.com.luizvictor.anotai.entities.category;
+package br.com.luizvictor.springcatalog.entities.category;
 
-import br.com.luizvictor.anotai.entities.product.Product;
+import br.com.luizvictor.springcatalog.entities.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.json.JSONArray;

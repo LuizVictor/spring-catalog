@@ -1,9 +1,9 @@
-package br.com.luizvictor.anotai.services;
+package br.com.luizvictor.springcatalog.services;
 
-import br.com.luizvictor.anotai.entities.category.Category;
-import br.com.luizvictor.anotai.entities.product.Product;
-import br.com.luizvictor.anotai.entities.product.ProductDto;
-import br.com.luizvictor.anotai.repositories.ProductRepository;
+import br.com.luizvictor.springcatalog.entities.category.Category;
+import br.com.luizvictor.springcatalog.entities.product.Product;
+import br.com.luizvictor.springcatalog.entities.product.ProductDto;
+import br.com.luizvictor.springcatalog.repositories.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 

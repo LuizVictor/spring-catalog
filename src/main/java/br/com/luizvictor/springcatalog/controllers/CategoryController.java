@@ -1,8 +1,8 @@
-package br.com.luizvictor.anotai.controllers;
+package br.com.luizvictor.springcatalog.controllers;
 
-import br.com.luizvictor.anotai.entities.category.Category;
-import br.com.luizvictor.anotai.entities.category.CategoryDto;
-import br.com.luizvictor.anotai.services.CategoryService;
+import br.com.luizvictor.springcatalog.entities.category.Category;
+import br.com.luizvictor.springcatalog.entities.category.CategoryDto;
+import br.com.luizvictor.springcatalog.services.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

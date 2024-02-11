@@ -1,6 +1,6 @@
-package br.com.luizvictor.anotai.entities.product;
+package br.com.luizvictor.springcatalog.entities.product;
 
-import br.com.luizvictor.anotai.entities.category.Category;
+import br.com.luizvictor.springcatalog.entities.category.Category;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
